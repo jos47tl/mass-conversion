@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const convert = require("./convert");
 
 app.use(express.json());
+app.use(express.static(__dirname + "/public"));
+
+const convert = require("./public/js/convert");
 
 app.get("/api/convert", (req, res) => {
   const { value, fromUnit, toUnit } = req.query;
@@ -17,8 +19,7 @@ app.post("/api/combine", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  // res.sendFile(__dirname + "/index.html");
-  res.send("Hello world");
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.listen(port, () => {
