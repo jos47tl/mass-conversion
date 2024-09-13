@@ -23,6 +23,34 @@ function convertMass(value, fromUnit, toUnit) {
   return result;
 }
 
-console.log(convertMass(1, "kg", "kg")); // Output: 1
-console.log(convertMass(1, "kg", "t")); // Output: 0.001
-console.log(convertMass(50, "g", "oz")); // Output: 1.763698
+function combineMass(json) {
+  let result = {
+    values: [],
+    units: [],
+  };
+  let kgTotal = 0;
+
+  for (let i = 0; i < json.values.length; i++) {
+    const unit = json.units[i];
+    const operation = json.operations[i];
+    const kgMass = json.values[i] * conversion[unit];
+
+    if (operation === "add") {
+      kgTotal += kgMass;
+    } else if (operation === "subtract") {
+      kgTotal -= kgMass;
+    }
+    if (!result.units.includes(unit)) {
+      result.units.push(unit);
+    }
+  }
+
+  for (let i = 0; i < result.units.length; i++) {
+    const converted = convertMass(kgTotal, "kg", result.units[i]);
+    result.values.push(converted.value);
+  }
+
+  return result;
+}
+
+module.exports = { convertMass, combineMass };
