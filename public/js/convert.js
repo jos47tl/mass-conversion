@@ -1,4 +1,4 @@
-const conversion = {
+const conversions = {
   kg: 1,
   g: 0.001,
   mg: 0.000001,
@@ -10,15 +10,15 @@ const conversion = {
 };
 
 function convertMass(value, fromUnit, toUnit) {
-  const kgMass = value * conversion[fromUnit];
-  const result = kgMass / conversion[toUnit];
+  const kgMass = value * conversions[fromUnit];
+  const result = kgMass / conversions[toUnit];
 
   return result;
 }
 
 function combineMass(value1, unit1, value2, unit2, operation) {
-  const kgMass1 = value1 * conversion[unit1];
-  const kgMass2 = value2 * conversion[unit2];
+  const kgMass1 = value1 * conversions[unit1];
+  const kgMass2 = value2 * conversions[unit2];
   let kgTotal;
 
   if (operation === "add") {
@@ -28,8 +28,8 @@ function combineMass(value1, unit1, value2, unit2, operation) {
   }
 
   const result = {
-    value1: kgTotal / conversion[unit1],
-    value2: kgTotal / conversion[unit2],
+    value1: kgTotal / conversions[unit1],
+    value2: kgTotal / conversions[unit2],
   };
 
   return result;
@@ -67,4 +67,4 @@ function listMass(json) {
 }
 */
 
-module.exports = { convertMass, combineMass };
+module.exports = { conversions, convertMass, combineMass };
