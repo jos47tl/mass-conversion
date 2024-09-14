@@ -19,7 +19,7 @@ convertButton.addEventListener("click", () => {
     .then((data) => {
       console.log(data);
       let element = document.createElement("div");
-      element.textContent = String(data.value) + data.unit;
+      element.textContent = String(data.result) + toUnitValue;
       resultCard.append(element);
     })
     .catch((error) => console.error(error));

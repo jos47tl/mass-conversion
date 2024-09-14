@@ -9,13 +9,13 @@ app.use(express.static(__dirname + "/public"));
 app.get("/api/convert", (req, res) => {
   const { value, fromUnit, toUnit } = req.query;
   const result = convert.convertMass(value, fromUnit, toUnit);
-  res.send(result);
+  res.send({ result });
 });
 
-app.post("/api/combine", (req, res) => {
+app.get("/api/combine", (req, res) => {
   const { value1, unit1, value2, unit2, operation } = req.query;
   const result = convert.combineMass(value1, unit1, value2, unit2, operation);
-  res.send(result);
+  res.send({ result });
 });
 
 app.get("/", (req, res) => {
