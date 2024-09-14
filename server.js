@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const convert = require("./public/js/convert");
 
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
-
-const convert = require("./public/js/convert");
 
 app.get("/api/convert", (req, res) => {
   const { value, fromUnit, toUnit } = req.query;
@@ -14,12 +13,13 @@ app.get("/api/convert", (req, res) => {
 });
 
 app.post("/api/combine", (req, res) => {
-  const result = convert.combineMass(req.body);
+  const { value1, unit1, value2, unit2, operation } = req.query;
+  const result = convert.combineMass(value1, unit1, value2, unit2, operation);
   res.send(result);
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.listen(port, () => {

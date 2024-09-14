@@ -10,20 +10,33 @@ const conversion = {
 };
 
 function convertMass(value, fromUnit, toUnit) {
-  let result = {
-    value: value,
-    unit: toUnit,
-  };
-
-  if (fromUnit !== toUnit) {
-    const kgMass = value * conversion[fromUnit];
-    result.value = kgMass / conversion[toUnit];
-  }
+  const kgMass = value * conversion[fromUnit];
+  const result = kgMass / conversion[toUnit];
 
   return result;
 }
 
-function combineMass(json) {
+function combineMass(value1, unit1, value2, unit2, operation) {
+  const kgMass1 = value1 * conversion[unit1];
+  const kgMass2 = value2 * conversion[unit2];
+  let kgTotal;
+
+  if (operation === "add") {
+    kgTotal = kgMass1 + kgMass2;
+  } else if (operation === "subtract") {
+    kgTotal = kgMass1 - kgMass2;
+  }
+
+  const result = {
+    value1: kgTotal / conversion[unit1],
+    value2: kgTotal / conversion[unit2],
+  };
+
+  return result;
+}
+
+/*
+function listMass(json) {
   let result = {
     values: [],
     units: [],
@@ -52,5 +65,6 @@ function combineMass(json) {
 
   return result;
 }
+*/
 
 module.exports = { convertMass, combineMass };

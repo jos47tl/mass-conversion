@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/index.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
     <title>Mass Conversion</title>
   </head>
   <body>
@@ -30,6 +31,7 @@
                 class="form-select"
                 aria-label="Convert from unit"
               >
+                <option selected>Choose a unit to convert from</option>
                 <option value="kg">Kilogram (kg)</option>
                 <option value="g">Gram (g)</option>
                 <option value="mg">Milligram (mg)</option>
@@ -46,7 +48,8 @@
                 id="toUnit"
                 class="form-select"
                 aria-label="Convert to unit"
-              >
+              ></select>
+                <option selected>Choose a unit to convert to</option>
                 <option value="kg">Kilogram (kg)</option>
                 <option value="g">Gram (g)</option>
                 <option value="mg">Milligram (mg)</option>
