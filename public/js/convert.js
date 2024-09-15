@@ -14,10 +14,10 @@ function formatNumber(number) {
   const smallThreshold = 0.000000001;
   const absoluteValue = Math.abs(number);
 
-  if (((absoluteValue < smallThreshold) && absoluteValue > 0) || absoluteValue > largeThreshold) {
+  if ((absoluteValue < smallThreshold && absoluteValue > 0) || absoluteValue > largeThreshold) {
     return parseFloat(number.toPrecision(10)).toExponential();
   } else {
-    return parseFloat(number.toFixed(9));
+    return parseFloat(Number(number).toFixed(9));
   }
 }
 
