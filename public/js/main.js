@@ -40,6 +40,26 @@ convertButton.addEventListener("click", () => {
   const value = convertValue.value;
   const fromUnitValue = fromUnit.value;
   const toUnitValue = toUnit.value;
+
+  let alerts = [];
+  if (value === "") {
+    alerts.push("Value for mass is required");
+  } else if (isNaN(parseFloat(value))) {
+    alerts.push("Value for mass is not a number");
+  }
+  if (fromUnitValue === "") {
+    alerts.push("Select a unit to convert from");
+  }
+  if (toUnitValue === "") {
+    alerts.push("Select a unit to convert to");
+  } else if (fromUnitValue === toUnitValue) {
+    alerts.push("Units cannot be the same");
+  }
+  if (alerts.length > 0) {
+    alert(alerts.join("\n"));
+    return false;
+  }
+
   const queryString = `?value=${value}&fromUnit=${fromUnitValue}&toUnit=${toUnitValue}`;
   const fetchUrl = convertUrl + queryString;
 
@@ -64,7 +84,27 @@ combineButton.addEventListener("click", () => {
   const unit1 = combineUnit1.value;
   const value2 = combineValue2.value;
   const unit2 = combineUnit2.value;
-  const operation = document.querySelector("input[type='radio']:checked").id;
+
+  let alerts = [];
+  if (value1 === "" || value2 === "") {
+    alerts.push("Value for mass is required");
+  } else if (isNaN(parseFloat(value1)) || isNaN(parseFloat(value2))) {
+    alerts.push("Value for mass is not a number");
+  }
+  if (unit1 === "") {
+    alerts.push("Select a unit for the first mass");
+  }
+  if (unit2 === "") {
+    alerts.push("Select a unit for the second mass");
+  } else if (unit1 === unit2) {
+    alerts.push("Units cannot be the same");
+  }
+  if (alerts.length > 0) {
+    alert(alerts.join("\n"));
+    return false;
+  }
+
+  const operation = document.querySelector("input[name=operation]:checked").id;
   const queryString = `?value1=${value1}&unit1=${unit1}&value2=${value2}&unit2=${unit2}&operation=${operation}`;
   const fetchUrl = combineUrl + queryString;
 
