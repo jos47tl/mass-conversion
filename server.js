@@ -15,7 +15,7 @@ app.get("/api/convert", (req, res) => {
 app.get("/api/combine", (req, res) => {
   const { value1, unit1, value2, unit2, operation } = req.query;
   const result = convert.combineMass(value1, unit1, value2, unit2, operation);
-  res.send({ result });
+  res.send(result);
 });
 
 app.get("/", (req, res) => {

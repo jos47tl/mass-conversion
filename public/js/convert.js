@@ -40,8 +40,8 @@ function combineMass(value1, unit1, value2, unit2, operation) {
   }
 
   const result = {
-    value1: formatNumber(kgTotal / conversions[unit1]),
-    value2: formatNumber(kgTotal / conversions[unit2]),
+    result1: formatNumber(kgTotal / conversions[unit1]),
+    result2: formatNumber(kgTotal / conversions[unit2]),
   };
 
   return result;

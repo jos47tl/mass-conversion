@@ -118,8 +118,8 @@ combineButton.addEventListener("click", () => {
       let result1 = document.createElement("p");
       let result2 = document.createElement("p");
       result1.style.marginBottom = 0;
-      result1.textContent = `${data.result.value1} ${unit1}`;
-      result2.textContent = `${data.result.value2} ${unit2}`;
+      result1.textContent = `${data.result1} ${unit1}`;
+      result2.textContent = `${data.result2} ${unit2}`;
       const combineResult = document.getElementById(elementID);
 
       combineResult.append(result1);
