@@ -9,11 +9,23 @@ const conversions = {
   long_t: 1016.047,
 };
 
+function formatNumber(number) {
+  const largeThreshold = 999999999;
+  const smallThreshold = 0.000000001;
+  const absoluteValue = Math.abs(number);
+
+  if (absoluteValue < smallThreshold || absoluteValue > largeThreshold) {
+    return parseFloat(number.toPrecision(10)).toExponential();
+  } else {
+    return parseFloat(number.toFixed(9));
+  }
+}
+
 function convertMass(value, fromUnit, toUnit) {
   const kgMass = value * conversions[fromUnit];
   const result = kgMass / conversions[toUnit];
 
-  return result;
+  return formatNumber(result);
 }
 
 function combineMass(value1, unit1, value2, unit2, operation) {
@@ -28,8 +40,8 @@ function combineMass(value1, unit1, value2, unit2, operation) {
   }
 
   const result = {
-    value1: kgTotal / conversions[unit1],
-    value2: kgTotal / conversions[unit2],
+    value1: formatNumber(kgTotal / conversions[unit1]),
+    value2: formatNumber(kgTotal / conversions[unit2]),
   };
 
   return result;
