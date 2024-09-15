@@ -14,7 +14,7 @@ function formatNumber(number) {
   const smallThreshold = 0.000000001;
   const absoluteValue = Math.abs(number);
 
-  if (absoluteValue < smallThreshold || absoluteValue > largeThreshold) {
+  if (((absoluteValue < smallThreshold) && absoluteValue > 0) || absoluteValue > largeThreshold) {
     return parseFloat(number.toPrecision(10)).toExponential();
   } else {
     return parseFloat(number.toFixed(9));
@@ -47,4 +47,4 @@ function combineMass(value1, unit1, value2, unit2, operation) {
   return result;
 }
 
-module.exports = { conversions, convertMass, combineMass };
+module.exports = { conversions, formatNumber, convertMass, combineMass };
