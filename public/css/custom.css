@@ -1,0 +1,15 @@
+:root {
+  --light-gray: rgba(120, 118, 118, 0.2);
+}
+
+body {
+  background-color: var(--light-gray);
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
