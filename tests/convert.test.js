@@ -16,7 +16,9 @@ describe("formatNumber", () => {
   });
   it("edge cases", () => {
     expect(formatNumber("")).toBe(0);
-    expect(formatNumber("a")).toBeNaN();
+    expect(formatNumber("a")).toBe(0);
+    expect(formatNumber(null)).toBe(0);
+    expect(formatNumber(undefined)).toBe(0);
   })
 })
 
@@ -36,6 +38,47 @@ describe("convertMass", () => {
   });
   it("edge cases", () => {
     expect(convertMass("", "kg", "lb")).toBe(0);
-    expect(formatNumber("a")).toBeNaN();
+    expect(convertMass("a", "kg", "lb")).toBe(0);
+    expect(convertMass(null, "kg", "lb")).toBe(0);
+    expect(convertMass(undefined, "kg", "lb")).toBe(0);
+    expect(convertMass(1, "kg", "fake_unit")).toBe(0);
   })
+})
+
+describe("combineMass", () => {
+  it("simple addition", () => {
+    const output = {
+      result1: 2,
+      result2: 2,
+    }
+    expect(combineMass(1, "kg", 1, "kg", "add")).toEqual(output);
+  });
+  it("simple subtraction", () => {
+    const output = {
+      result1: 0,
+      result2: 0,
+    }
+    expect(combineMass(1, "kg", 1, "kg", "subtract")).toEqual(output);
+  });
+  it("differing units", () => {
+    const output = {
+      result1: 3.36077711,
+      result2: 7.409245244,
+    }
+    expect(combineMass(2, "kg", 3, "lb", "add")).toEqual(output);
+  });
+  it("fix rounding error", () => {
+    const output = {
+      result1: 1.001,
+      result2: 1001,
+    }
+    expect(combineMass(1, "kg", 1, "g", "add")).toEqual(output);
+  });
+  it("scientific notation", () => {
+    const output = {
+      result1:	"9.0718e+10",
+      result2:	100.000000001,
+    }
+    expect(combineMass(1, "mg", 100, "short_t", "add")).toEqual(output);
+  });
 })

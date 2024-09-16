@@ -20,7 +20,7 @@ This project is a tool to convert a mass from one unit to another. It also allow
     ```
     npm start
     ```
-4. In a browser, enter address [http://localhost:3000](http://localhost:3000/) to show the HTML interface
+4. Visit [http://localhost:3000](http://localhost:3000/) in a browser to show the HTML interface
 
 ## API Endpoints
 

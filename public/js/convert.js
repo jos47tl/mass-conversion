@@ -10,6 +10,10 @@ const conversions = {
 };
 
 function formatNumber(number) {
+  if (isNaN(number)) {
+    return 0;
+  }
+
   const largeThreshold = 999999999;
   const smallThreshold = 0.000000001;
   const absoluteValue = Math.abs(number);
